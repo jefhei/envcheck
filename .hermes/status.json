@@ -12,9 +12,15 @@
       "id": "M1.1",
       "description": "Project scaffolding: pyproject.toml (uv), Typer CLI entrypoint, src/envcheck/ package structure",
       "completed_at": "2026-07-25"
+    },
+    {
+      "id": "M1.2",
+      "description": ".envcheck.yaml schema design + config loader with Pydantic validation",
+      "completed_at": "2026-07-26"
     }
   ],
-  "current_task": "M1.2",
+  "current_task": "M1.3",
   "current_milestone": "M1 - Core CLI + Scan",
-  "started_at": "2026-07-25"
+  "started_at": "2026-07-25",
+  "last_updated": "2026-07-26"
 }
