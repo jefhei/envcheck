@@ -17,10 +17,15 @@
       "id": "M1.2",
       "description": ".envcheck.yaml schema design + config loader with Pydantic validation",
       "completed_at": "2026-07-26"
+    },
+    {
+      "id": "M1.3",
+      "description": ".env file scanner — parse .env, .env.*, .env.example files, extract key-value pairs",
+      "completed_at": "2026-07-27"
     }
   ],
-  "current_task": "M1.3",
-  "current_milestone": "M1 - Core CLI + Scan",
+  "current_task": "M1.4",
+  "current_milestone": "M1 — Core CLI + Scan",
   "started_at": "2026-07-25",
-  "last_updated": "2026-07-26"
+  "last_updated": "2026-07-27"
 }
