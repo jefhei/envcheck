@@ -22,10 +22,15 @@
       "id": "M1.3",
       "description": ".env file scanner — parse .env, .env.*, .env.example files, extract key-value pairs",
       "completed_at": "2026-07-27"
+    },
+    {
+      "id": "M1.4",
+      "description": "Docker config scanner — extract env blocks from docker-compose.yml and Dockerfile (ARG/ENV)",
+      "completed_at": "2026-07-28"
     }
   ],
-  "current_task": "M1.4",
+  "current_task": "M1.5",
   "current_milestone": "M1 — Core CLI + Scan",
   "started_at": "2026-07-25",
-  "last_updated": "2026-07-27"
+  "last_updated": "2026-07-28"
 }

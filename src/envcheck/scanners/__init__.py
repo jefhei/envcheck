@@ -1,5 +1,15 @@
 """Scanner implementations for envcheck."""
 
+from envcheck.scanners.docker import (
+    DockerComposeScanResult,
+    DockerScanResult,
+    DockerVarEntry,
+    DockerfileScanResult,
+    scan_docker_compose,
+    scan_docker_compose_files,
+    scan_dockerfile,
+    scan_dockerfiles,
+)
 from envcheck.scanners.env_file import EnvFileScanResult, EnvVarEntry, scan_env_file, scan_env_files
 
 __all__ = [
@@ -7,4 +17,12 @@ __all__ = [
     "EnvVarEntry",
     "scan_env_file",
     "scan_env_files",
+    "DockerVarEntry",
+    "DockerfileScanResult",
+    "DockerComposeScanResult",
+    "DockerScanResult",
+    "scan_dockerfile",
+    "scan_dockerfiles",
+    "scan_docker_compose",
+    "scan_docker_compose_files",
 ]
