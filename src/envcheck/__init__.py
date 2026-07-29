@@ -4,6 +4,14 @@ from envcheck.config import EnvcheckConfig, load_config
 
 # Re-export scanner types so dependent modules (profile builder, etc.)
 # can import directly from ``envcheck``.
+from envcheck.scanners.ci import (
+    CiScanResult,
+    CiSecretEntry,
+    CiVarEntry,
+    CiWorkflowScanResult,
+    scan_ci_workflow,
+    scan_ci_workflows,
+)
 from envcheck.scanners.docker import (
     DockerComposeScanResult,
     DockerScanResult,
@@ -32,4 +40,10 @@ __all__ = [
     "scan_dockerfiles",
     "scan_docker_compose",
     "scan_docker_compose_files",
+    "CiVarEntry",
+    "CiSecretEntry",
+    "CiWorkflowScanResult",
+    "CiScanResult",
+    "scan_ci_workflow",
+    "scan_ci_workflows",
 ]
