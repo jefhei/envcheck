@@ -4,7 +4,12 @@
     {
       "id": "M1",
       "name": "M1 — Core CLI + Scan",
-      "status": "in_progress"
+      "status": "completed"
+    },
+    {
+      "id": "M2",
+      "name": "M2 — Diff Engine + Report",
+      "status": "pending"
     }
   ],
   "completed_tasks": [
@@ -32,10 +37,15 @@
       "id": "M1.5",
       "description": "CI config scanner — parse GitHub Actions workflow YAML for env: blocks and secrets references",
       "completed_at": "2026-07-29"
+    },
+    {
+      "id": "M1.6",
+      "description": "Basic environment profile builder — aggregate scanner results into EnvironmentProfile model",
+      "completed_at": "2026-07-30"
     }
   ],
-  "current_task": "M1.6",
-  "current_milestone": "M1 — Core CLI + Scan",
+  "current_task": "M2.1",
+  "current_milestone": "M2 — Diff Engine + Report",
   "started_at": "2026-07-25",
-  "last_updated": "2026-07-29"
+  "last_updated": "2026-07-30"
 }
