@@ -4,6 +4,13 @@ from envcheck.config import EnvcheckConfig, load_config
 
 # Re-export scanner types so dependent modules (profile builder, etc.)
 # can import directly from ``envcheck``.
+from envcheck.diff import (
+    DiffKind,
+    EnvVarDiffResult,
+    VarDiff,
+    diff_env_vars,
+    infer_value_type,
+)
 from envcheck.profile import EnvironmentProfile, build_profile
 from envcheck.scanners.ci import (
     CiScanResult,
@@ -29,6 +36,11 @@ __version__ = "0.1.0"
 __all__ = [
     "EnvcheckConfig",
     "load_config",
+    "DiffKind",
+    "EnvVarDiffResult",
+    "VarDiff",
+    "diff_env_vars",
+    "infer_value_type",
     "EnvironmentProfile",
     "build_profile",
     "EnvFileScanResult",

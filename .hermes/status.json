@@ -42,10 +42,15 @@
       "id": "M1.6",
       "description": "Basic environment profile builder — aggregate scanner results into EnvironmentProfile model",
       "completed_at": "2026-07-30"
+    },
+    {
+      "id": "M2.1",
+      "description": "Var diff engine — compare env vars across profiles: missing, extra, value-changed, type-changed",
+      "completed_at": "2026-07-31"
     }
   ],
-  "current_task": "M2.1",
+  "current_task": "M2.2",
   "current_milestone": "M2 — Diff Engine + Report",
   "started_at": "2026-07-25",
-  "last_updated": "2026-07-30"
+  "last_updated": "2026-07-31"
 }
