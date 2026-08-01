@@ -12,6 +12,14 @@ from envcheck.diff import (
     infer_value_type,
 )
 from envcheck.profile import EnvironmentProfile, build_profile
+from envcheck.services import (
+    ParsedImage,
+    ServiceDiff,
+    ServiceDiffKind,
+    ServiceDiffResult,
+    diff_services,
+    parse_image,
+)
 from envcheck.scanners.ci import (
     CiScanResult,
     CiSecretEntry,
@@ -43,6 +51,12 @@ __all__ = [
     "infer_value_type",
     "EnvironmentProfile",
     "build_profile",
+    "ParsedImage",
+    "ServiceDiff",
+    "ServiceDiffKind",
+    "ServiceDiffResult",
+    "diff_services",
+    "parse_image",
     "EnvFileScanResult",
     "EnvVarEntry",
     "scan_env_file",

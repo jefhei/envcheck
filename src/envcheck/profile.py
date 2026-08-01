@@ -191,8 +191,12 @@ def _classify_path(path: Path) -> str:
     if any(name.startswith(prefix) for prefix in _ENV_FILE_PREFIXES):
         return "env"
 
-    # docker-compose files
-    if name in _COMPOSE_FILENAMES:
+    # docker-compose files (exact names plus per-environment variants
+    # like docker-compose.dev.yml / compose.staging.yaml)
+    if name in _COMPOSE_FILENAMES or (
+        (name.startswith("docker-compose.") or name.startswith("compose."))
+        and name.endswith((".yml", ".yaml"))
+    ):
         return "compose"
 
     # Dockerfiles

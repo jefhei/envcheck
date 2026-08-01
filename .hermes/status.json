@@ -9,7 +9,7 @@
     {
       "id": "M2",
       "name": "M2 — Diff Engine + Report",
-      "status": "pending"
+      "status": "in_progress"
     }
   ],
   "completed_tasks": [
@@ -47,10 +47,15 @@
       "id": "M2.1",
       "description": "Var diff engine — compare env vars across profiles: missing, extra, value-changed, type-changed",
       "completed_at": "2026-07-31"
+    },
+    {
+      "id": "M2.2",
+      "description": "Service version diff — detect version mismatches in Docker images (e.g. postgres:16 vs postgres:15)",
+      "completed_at": "2026-08-01"
     }
   ],
-  "current_task": "M2.2",
+  "current_task": "M2.3",
   "current_milestone": "M2 — Diff Engine + Report",
   "started_at": "2026-07-25",
-  "last_updated": "2026-07-31"
+  "last_updated": "2026-08-01"
 }
