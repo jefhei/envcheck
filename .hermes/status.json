@@ -52,10 +52,15 @@
       "id": "M2.2",
       "description": "Service version diff — detect version mismatches in Docker images (e.g. postgres:16 vs postgres:15)",
       "completed_at": "2026-08-01"
+    },
+    {
+      "id": "M2.3",
+      "description": "Rich terminal reporter — color-coded table (green=ok, yellow=diff, red=missing, gray=extra)",
+      "completed_at": "2026-08-02"
     }
   ],
-  "current_task": "M2.3",
+  "current_task": "M2.4",
   "current_milestone": "M2 — Diff Engine + Report",
   "started_at": "2026-07-25",
-  "last_updated": "2026-08-01"
+  "last_updated": "2026-08-02"
 }

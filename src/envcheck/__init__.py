@@ -12,6 +12,18 @@ from envcheck.diff import (
     infer_value_type,
 )
 from envcheck.profile import EnvironmentProfile, build_profile
+from envcheck.reporter import (
+    ENV_VAR_STYLES,
+    SERVICE_STYLES,
+    build_verdict,
+    print_env_var_diff,
+    print_report,
+    print_service_diff,
+    render_env_var_diff,
+    render_service_diff,
+    summarize_env_var_diff,
+    summarize_service_diff,
+)
 from envcheck.services import (
     ParsedImage,
     ServiceDiff,
@@ -51,6 +63,16 @@ __all__ = [
     "infer_value_type",
     "EnvironmentProfile",
     "build_profile",
+    "ENV_VAR_STYLES",
+    "SERVICE_STYLES",
+    "render_env_var_diff",
+    "render_service_diff",
+    "print_env_var_diff",
+    "print_service_diff",
+    "print_report",
+    "build_verdict",
+    "summarize_env_var_diff",
+    "summarize_service_diff",
     "ParsedImage",
     "ServiceDiff",
     "ServiceDiffKind",
