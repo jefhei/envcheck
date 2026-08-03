@@ -11,6 +11,11 @@ from envcheck.diff import (
     diff_env_vars,
     infer_value_type,
 )
+from envcheck.json_reporter import (
+    build_json_report,
+    print_json_report,
+    render_json_report,
+)
 from envcheck.profile import EnvironmentProfile, build_profile
 from envcheck.reporter import (
     ENV_VAR_STYLES,
@@ -61,6 +66,9 @@ __all__ = [
     "VarDiff",
     "diff_env_vars",
     "infer_value_type",
+    "build_json_report",
+    "render_json_report",
+    "print_json_report",
     "EnvironmentProfile",
     "build_profile",
     "ENV_VAR_STYLES",

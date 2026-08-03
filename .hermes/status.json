@@ -57,10 +57,15 @@
       "id": "M2.3",
       "description": "Rich terminal reporter — color-coded table (green=ok, yellow=diff, red=missing, gray=extra)",
       "completed_at": "2026-08-02"
+    },
+    {
+      "id": "M2.4",
+      "description": "JSON output mode — --json flag for CI/machine consumption",
+      "completed_at": "2026-08-03"
     }
   ],
-  "current_task": "M2.4",
+  "current_task": "M2.5",
   "current_milestone": "M2 — Diff Engine + Report",
   "started_at": "2026-07-25",
-  "last_updated": "2026-08-02"
+  "last_updated": "2026-08-03"
 }
