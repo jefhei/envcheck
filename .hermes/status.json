@@ -9,7 +9,17 @@
     {
       "id": "M2",
       "name": "M2 — Diff Engine + Report",
+      "status": "completed"
+    },
+    {
+      "id": "M3",
+      "name": "M3 — CI Integration",
       "status": "in_progress"
+    },
+    {
+      "id": "M4",
+      "name": "M4 — Polish & Docs",
+      "status": "pending"
     }
   ],
   "completed_tasks": [
@@ -62,10 +72,15 @@
       "id": "M2.4",
       "description": "JSON output mode — --json flag for CI/machine consumption",
       "completed_at": "2026-08-03"
+    },
+    {
+      "id": "M2.5",
+      "description": "Exit codes — 0 = clean, 1 = drift detected, 2 = error; with --strict mode for CI",
+      "completed_at": "2026-08-05"
     }
   ],
-  "current_task": "M2.5",
-  "current_milestone": "M2 — Diff Engine + Report",
+  "current_task": "M3.1",
+  "current_milestone": "M3 — CI Integration",
   "started_at": "2026-07-25",
-  "last_updated": "2026-08-03"
+  "last_updated": "2026-08-05"
 }

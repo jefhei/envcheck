@@ -3,9 +3,11 @@ from pathlib import Path
 from typing import Optional
 
 import typer
+import yaml
 
 from envcheck.config import EnvcheckConfig, load_config
 from envcheck.diff import diff_env_vars
+from envcheck.exit_codes import ExitCode, compute_exit_code
 from envcheck.json_reporter import print_json_report
 from envcheck.profile import build_profile
 from envcheck.reporter import print_report
@@ -54,6 +56,11 @@ def diff(
         "--json",
         help="Emit a machine-readable JSON report instead of the Rich terminal tables",
     ),
+    strict: bool = typer.Option(
+        False,
+        "--strict",
+        help="Fail (exit 1) on any drift, including extra variables present only in the target (for CI gates)",
+    ),
 ):
     """Compare two environments and report drift.
 
@@ -64,13 +71,26 @@ def diff(
     By default the report is rendered as color-coded Rich tables.  With
     ``--json`` a single JSON document is written to stdout (see
     :mod:`envcheck.json_reporter` for the schema) for CI consumption.
+
+    Exit codes:
+
+    - ``0`` — environments are in sync (no parity-critical drift)
+    - ``1`` — drift detected.  In default mode this means missing,
+      changed, or type-changed variables, or any Docker-service drift
+      (extra variables alone do not fail the run); with ``--strict``
+      any drift at all, extras included, fails.
+    - ``2`` — error (missing config, unknown environment, malformed
+      YAML, unsupported service configuration, ...)
     """
     try:
         config = load_config(config_path)
-        _run_diff(config, base_env, target_env, root, json_output)
-    except (FileNotFoundError, KeyError, ValueError) as exc:
+        code = _run_diff(config, base_env, target_env, root, json_output, strict)
+    except (FileNotFoundError, KeyError, ValueError, OSError, yaml.YAMLError) as exc:
         typer.echo(f"Error: {exc}", err=True)
-        raise typer.Exit(code=2) from exc
+        raise typer.Exit(code=ExitCode.ERROR) from exc
+
+    if code != ExitCode.OK:
+        raise typer.Exit(code=code)
 
 
 def _run_diff(
@@ -79,8 +99,9 @@ def _run_diff(
     target_env: str,
     root: Optional[Path],
     json_output: bool,
-) -> None:
-    """Load profiles, compute diffs, and print the report."""
+    strict: bool,
+) -> ExitCode:
+    """Load profiles, compute diffs, print the report, and classify the exit code."""
     base = build_profile(config, base_env, root=root)
     target = build_profile(config, target_env, root=root)
 
@@ -91,3 +112,5 @@ def _run_diff(
         print_json_report(env_diff, service_diff, file=sys.stdout)
     else:
         print_report(env_diff, service_diff)
+
+    return compute_exit_code(env_diff, service_diff, strict=strict)

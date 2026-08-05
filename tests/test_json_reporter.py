@@ -325,8 +325,10 @@ class TestCliJson:
         )
 
     def test_json_flag_emits_only_json(self, project: Path) -> None:
+        # The fixture project has drift, so the exit code is 1 (M2.5);
+        # the important part is that stdout contains *only* the JSON doc.
         result = self._run(project, "--json")
-        assert result.exit_code == 0, result.output
+        assert result.exit_code == 1, result.output
         parsed = _parse(result.stdout)
         assert parsed["base_env"] == "dev"
         assert parsed["target_env"] == "staging"
@@ -370,8 +372,10 @@ class TestCliJson:
         assert parsed["verdict"] == "in sync"
 
     def test_default_output_is_rich_table(self, project: Path) -> None:
+        # The fixture project has drift, so the exit code is 1 (M2.5);
+        # the table itself is still rendered with the drift verdict.
         result = self._run(project)
-        assert result.exit_code == 0, result.output
+        assert result.exit_code == 1, result.output
         assert "Environment variables — dev vs staging" in result.stdout
         assert "Drift detected" in result.stdout
 
@@ -426,5 +430,6 @@ class TestJsonMatchesLibrary:
             ["diff", "dev", "staging", "--config", str(tmp_path / ".envcheck.yaml"),
              "--root", str(tmp_path), "--json"],
         )
-        assert result.exit_code == 0, result.output
+        # The project has drift (B extra, C missing), so exit code is 1 (M2.5).
+        assert result.exit_code == 1, result.output
         assert _parse(result.stdout) == from_envcheck_diff
