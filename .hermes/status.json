@@ -77,10 +77,15 @@
       "id": "M2.5",
       "description": "Exit codes — 0 = clean, 1 = drift detected, 2 = error; with --strict mode for CI",
       "completed_at": "2026-08-05"
+    },
+    {
+      "id": "M3.1",
+      "description": "envcheck init — interactive command that auto-discovers .env* files and generates .envcheck.yaml",
+      "completed_at": "2026-08-06"
     }
   ],
-  "current_task": "M3.1",
+  "current_task": "M3.2",
   "current_milestone": "M3 — CI Integration",
   "started_at": "2026-07-25",
-  "last_updated": "2026-08-05"
+  "last_updated": "2026-08-06"
 }

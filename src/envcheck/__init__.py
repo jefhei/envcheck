@@ -11,6 +11,16 @@ from envcheck.diff import (
     diff_env_vars,
     infer_value_type,
 )
+from envcheck.init import (
+    DEFAULT_ENV,
+    apply_env_names,
+    bootstrap,
+    discover_files,
+    group_environments,
+    parse_env_names,
+    render_config,
+    validate_env_name,
+)
 from envcheck.json_reporter import (
     build_json_report,
     print_json_report,
@@ -66,6 +76,14 @@ __all__ = [
     "VarDiff",
     "diff_env_vars",
     "infer_value_type",
+    "DEFAULT_ENV",
+    "apply_env_names",
+    "bootstrap",
+    "discover_files",
+    "group_environments",
+    "parse_env_names",
+    "render_config",
+    "validate_env_name",
     "build_json_report",
     "render_json_report",
     "print_json_report",

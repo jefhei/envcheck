@@ -8,6 +8,7 @@ import yaml
 from envcheck.config import EnvcheckConfig, load_config
 from envcheck.diff import diff_env_vars
 from envcheck.exit_codes import ExitCode, compute_exit_code
+from envcheck.init import bootstrap
 from envcheck.json_reporter import print_json_report
 from envcheck.profile import build_profile
 from envcheck.reporter import print_report
@@ -32,6 +33,58 @@ def version():
 
     ver = get_version("envcheck")
     typer.echo(f"envcheck v{ver}")
+
+
+@app.command()
+def init(
+    root: Optional[Path] = typer.Option(
+        None,
+        "--root",
+        help="Project root to scan (defaults to the current working directory)",
+    ),
+    config_path: Optional[Path] = typer.Option(
+        None,
+        "--config",
+        "-c",
+        help="Output path for the generated config (defaults to <root>/.envcheck.yaml)",
+    ),
+    yes: bool = typer.Option(
+        False,
+        "--yes",
+        "-y",
+        help="Accept all discovered environments without prompting (for CI/scripts)",
+    ),
+    force: bool = typer.Option(
+        False,
+        "--force",
+        "-f",
+        help="Overwrite an existing .envcheck.yaml",
+    ),
+):
+    """Bootstrap a .envcheck.yaml by auto-discovering environment files.
+
+    Scans the project root for .env* files, docker-compose files, and
+    Dockerfiles, groups them into environments (dev, staging, prod, ...),
+    and writes a valid .envcheck.yaml.
+
+    In interactive mode (the default) the discovered environment names
+    are presented and you can confirm or edit the comma-separated list.
+    Use --yes to accept the discovery result without prompting.
+    """
+    base = root.resolve() if root else Path.cwd().resolve()
+    out = config_path.resolve() if config_path else base / ".envcheck.yaml"
+
+    try:
+        environments = bootstrap(base, out, yes=yes, force=force)
+    except (FileNotFoundError, NotADirectoryError, ValueError, OSError) as exc:
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(code=ExitCode.ERROR) from exc
+
+    env_list = ", ".join(environments)
+    typer.echo(f"Created {out} with environments: {env_list}")
+    if len(environments) >= 2:
+        first, second = list(environments)[:2]
+        typer.echo(f"Next: run 'envcheck diff {first} {second}' to compare environments")
 
 
 @app.command()
